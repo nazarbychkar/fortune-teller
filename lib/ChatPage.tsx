@@ -3,6 +3,7 @@
 import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import gptAsk from "@/lib/ai"
+import Image from 'next/image'
 
 export default function ChatPage() {
   const [message, setMessage] = useState("")
@@ -22,11 +23,9 @@ export default function ChatPage() {
 
     try {
       setChatHistory([...chatHistory, message])
-      setMessage("")
       const result = await gptAsk(message)
-      const newResponse = result.content ?? "The spirits are silent..."
-      setResponse(newResponse)
-      setChatHistory((prev) => [...prev, newResponse])
+      setResponse(result)
+      setChatHistory((prev) => [...prev, response])
     } catch (error) {
       console.error("Error while fetching response:", error)
       setResponse("The crystal ball is clouded. Please try again.")
@@ -37,10 +36,12 @@ export default function ChatPage() {
     <div className="max-w-3xl mx-auto bg-opacity-30 bg-black rounded-lg p-6 backdrop-blur-sm">
       <div className="chat-bubble mb-8 bg-opacity-50 bg-purple-800 p-4 rounded-lg shadow-lg">
         <div className="flex items-center space-x-4">
-          <img
+          <Image
             className="rounded-full w-16 h-16 object-cover border-2 border-amber-300"
             src="/romani-fortune-teller.jpg"
             alt="Baba Zara"
+            width={500}
+            height={500}
           />
           <div>
             <p className="text-amber-300 font-semibold text-lg">Baba Zara:</p>

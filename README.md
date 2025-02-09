@@ -36,13 +36,13 @@ cd fortune-teller
 npm install
 ```
 
-4. Provide your .env file. You must include your OpenAI API key:
+3. Provide your .env file. You must include your OpenAI API key:
 ```
 OPENAI_API_KEY="your_api_key"
 ```
 Learn more about obtaining an API key here: [OpenAI API Documentation](https://platform.openai.com/docs/api-reference/authentication)
 
-3. Run the development server:
+4. Run the development server:
  ```bash
 npm run dev
 ```
